@@ -1,4 +1,12 @@
 /**
+* Runden mit Angabe der Nachkommastellen
+*/
+function round(value, digits){
+	return Math.round(value*Math.pow(10,digits))/Math.pow(10,digits);
+}
+
+
+/**
  * Checkt schätzt eigentlich nur, ob das jetzt kW oder MW ist und gibt kW wieder raus
  */
 function toKW(value){
@@ -52,17 +60,12 @@ function parsePowerValue(power){
 function getPowerColor(power){
 	var d = parsePowerValue(power);
 
-	return d >= 3000 ? '#800026' :
-           d >= 2000  ? '#BD0026' :
-           d >= 1000  ? '#E31A1C' :
-           d >= 500  ? '#FC4E2A' :
-           d >= 300   ? '#FD8D3C' :
-           d >= 200   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
-                      '#0000ff';
-}
-
-
-function meter2px(value){
-	// Ist doch von der Zoomstufe abhängig...
+	return d >= 3000	? '#800026' :
+           d >= 2000 	? '#BD0026' :
+           d >= 1000 	? '#E31A1C' :
+           d >= 500		? '#FC4E2A' :
+           d >= 300		? '#FD8D3C' :
+           d >= 200   	? '#FEB24C' :
+           d > 10 		? '#FED976' :
+                      	  '#0000ff';
 }
