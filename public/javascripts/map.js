@@ -40,15 +40,21 @@ $.getJSON("javascripts/wea.geojson",function(wea){
 		onEachFeature: onEachFeature,
 
 		pointToLayer: function (feature, latlng) {
-			 var fc = feature.properties.manufacturer != null   ? 	'#ff7800' :
+			 var bc = feature.properties.manufacturer != null   ? 	'#ff7800' :
             					//d > 10   ? 	'#FED976' :
                        					'#FF0000';
+            var fc = getPowerColor(feature.properties['generator:output:electricity']);
+
+            var radius = 8;
+            if(feature.properties["rotor:diameter"] > 0){
+            	radius = feature.properties["rotor:diameter"]/4;
+            }
 
 			return L.circleMarker(latlng, {
-				radius: 8,
+				radius: radius,
 				fillColor: fc,//"#ff7800",
-				color: "#000",
-				weight: 1,
+				color: bc,//"#000",
+				weight: 2,
 				opacity: 1,
 				fillOpacity: 0.8
 			});
@@ -62,3 +68,4 @@ map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
 map.locate({setView: true, maxZoom: 10});
+

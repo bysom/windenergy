@@ -11,7 +11,7 @@ public/stylesheets/*.css
 pids
 logs
 results
-node_modules
-public/bower_components
+node_modules/*
+public/bower_components/*
 
 npm-debug.log

@@ -26,13 +26,13 @@ function parsePowerValue(power){
 	}
 	//Wenn keine Zahl
 	else{
-		var parts = power.split(" ");
+		var parts = String(power).split(" ");
 
 		if(parts.length === 2){
-			if(parts[0] > 0 && toLowerCase(parts[1]) === "kw"){
+			if(parts[0] > 0 && String(parts[1].toLowerCase()) === "kw"){
 				return parts[0];
 			}
-			else if(parts[0] > 0 && toLowerCase(parts[1]) === "mw"){
+			else if(parts[0] > 0 && String(parts[1].toLowerCase()) === "mw"){
 				return parts[0]*1000;
 			}
 			else return 0;
@@ -40,13 +40,26 @@ function parsePowerValue(power){
 		}
 		//Leerzeichen vergessen?
 		else{
-			if(power.slice(0,power.length-2) > 0){
-				return toKW(power.slice(0,power.length-2));
+			if(String(power).slice(0,String(power).length-2) > 0){
+				return toKW(String(power).slice(0,String(power).length-2));
 			}
 			else return 0;
 		}
 	}
 	//Ich hätte einfach RegEx nutzen sollen -.-
+}
+
+function getPowerColor(power){
+	var d = parsePowerValue(power);
+
+	return d >= 3000 ? '#800026' :
+           d >= 2000  ? '#BD0026' :
+           d >= 1000  ? '#E31A1C' :
+           d >= 500  ? '#FC4E2A' :
+           d >= 300   ? '#FD8D3C' :
+           d >= 200   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#0000ff';
 }
 
 
