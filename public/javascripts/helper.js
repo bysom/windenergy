@@ -5,6 +5,12 @@ function round(value, digits){
 	return Math.round(value*Math.pow(10,digits))/Math.pow(10,digits);
 }
 
+function randomInt(start, end){
+
+
+	return Math.floor((Math.random()*(Number(end)+1-Number(start)))+Number(start)); 
+}
+
 
 /**
  * Checkt schätzt eigentlich nur, ob das jetzt kW oder MW ist und gibt kW wieder raus
@@ -69,3 +75,5 @@ function getPowerColor(power){
            d > 10 		? '#FED976' :
                       	  '#0000ff';
 }
+
+
